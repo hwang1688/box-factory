@@ -1,7 +1,7 @@
 # Install Tomcat 8
 
 # Create a tomcat system user
-useradd -r tomcat --shell /bin/false
+useradd -m -r -s /bin/bash tomcat
 
 # Download Tomcat
 wget http://www.trieuvan.com/apache/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz 
@@ -10,7 +10,8 @@ tar -xvzf /home/sbadmin/apache-tomcat-8.5.11.tar.gz -C /opt
 rm -f /home/sbadmin/apache-tomcat-8.5.11.tar.gz
 
 ln -s /opt/apache-tomcat-8.5.11 /opt/tomcat
-chown -hR tomcat: /opt/tomcat /opt/apache-tomcat-8.5.11
+chown -hR tomcat:tomcat /opt/tomcat /opt/apache-tomcat-8.5.11
+chmod 775 /opt/tomcat/webapps
 
 # Set up tomcat service
 cat <<EOF > /etc/systemd/system/tomcat.service

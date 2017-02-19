@@ -10,6 +10,10 @@ apt-get -y install curl
 printf "Running: apt-get -y install tree\n"
 apt-get -y install tree
 
+# Install ansible
+printf "Running: apt-get -y install ansible\n"
+apt-get -y install ansible
+
 # Tweak sshd to prevent DNS resolution (speed up logins)
 printf "Configure sshd to prevent DNS resolution...\n"
 printf "\n#Prevent DNS resolution to speed up logins\nUseDNS no\n" >> /etc/ssh/sshd_config

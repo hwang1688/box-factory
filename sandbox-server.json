@@ -61,10 +61,12 @@
           "scripts": [
             "scripts/base.sh",
             "scripts/vmtools.sh",
+            "scripts/vagrant.sh",
             "scripts/postgres.sh",
             "scripts/oraclejdk.sh",
             "scripts/apache.sh",
             "scripts/tomcat.sh",
+	    "scripts/iptables.sh",
             "scripts/cleanup.sh"
           ]
         }
