@@ -1,7 +1,7 @@
 {
   "variables": {
-    "core": "2",
-    "memory": "4096",
+    "core": "1",
+    "memory": "2048",
     "disk_size": "10240",
     "ssh_username": "sbadmin",
     "ssh_password": "56@dmin!",
