@@ -12,7 +12,7 @@ $ packer build -force sandbox-server.json
 ```
 
 ## Outcome
-A VMware VM named `packer-vmware-iso` in the `output-vmware-iso` directory with these on it:
+A VMware VM named `sandbox` in the `output-vmware-iso` directory with these on it:
 * 1 CPU, 2GB memory, 10GB disk
 * Debian Linux 8.7.1
 * Additional Debian packages:
