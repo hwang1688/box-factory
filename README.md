@@ -15,6 +15,11 @@ $ packer build -force sandbox-server.json
 A VMware VM named `packer-vmware-iso` in the `output-vmware-iso` directory with these on it:
 * 1 CPU, 2GB memory, 10GB disk
 * Debian Linux 8.7.1
+* Additional Debian packages:
+  + curl
+  + tree
+  + sysstat
+  + ansible
 * PostgreSQL 9.4.10
 * Oracle JDK 1.8.0_121-b13
 * Apache2 2.4.10-10+deb8u7
