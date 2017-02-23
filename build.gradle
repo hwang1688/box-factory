@@ -1,0 +1,20 @@
+defaultTasks 'build'
+
+task build(type: Exec) {
+    description "Build the sandbox-server vmware-iso"
+
+    commandLine "packer", "build", "-force", "sandbox-server.json"
+}
+
+task clean(type: Delete) {
+    description "Delete the output directory output-vmware-iso"
+
+    delete "output-vmware-iso"
+}
+
+task cleanAll(type: Delete) {
+    description "Delete the output-vmware-iso and packer_cache directories"
+
+    dependsOn clean
+    delete "packer_cache"
+}
