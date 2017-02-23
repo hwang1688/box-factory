@@ -6,9 +6,24 @@
 * Packer installed with `brew install packer`
 
 ## Instructions
-Run this commands to build:
+Build with Gradle
+```sh
+$ gradle
+```
+
+Or, run this command to build directly with packer
 ```sh
 $ packer build -force sandbox-server.json
+```
+
+To clean up the output directory `output-vmware-iso`, run
+```sh
+$ gradle clean
+```
+
+To clean up the output directory `output-vmware-iso` and the Packer cache directory `packer_cache`, run
+```sh
+$ gradle cleanAll
 ```
 
 ## Outcome
