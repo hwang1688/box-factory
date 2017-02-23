@@ -11,7 +11,7 @@ Build with Gradle
 $ gradle
 ```
 
-Or, run this commands to build directly with packer
+Or, run this command to build directly with packer
 ```sh
 $ packer build -force sandbox-server.json
 ```
