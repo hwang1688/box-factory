@@ -9,7 +9,8 @@
     "ssh_wait_timeout": "10000s",
     "iso_url": "http://cdimage.debian.org/debian-cd/8.7.1/amd64/iso-cd/debian-8.7.1-amd64-netinst.iso",
     "iso_md5": "453312bf56fc45669fec5ebc0f025ac7",
-    "vm_name": "sandbox"
+    "vm_name": "sandbox",
+    "output_directory": "build"
   },
   "builders": [
     {
@@ -37,6 +38,7 @@
       "iso_checksum": "{{user `iso_md5`}}",
       "iso_checksum_type": "md5",
       "iso_url": "{{user `iso_url`}}",
+      "output_directory": "{{user `output_directory`}}/{{user `vm_name`}}",
       "ssh_password": "{{user `ssh_password`}}",
       "ssh_port": "{{user `ssh_port`}}",
       "ssh_username": "{{user `ssh_username`}}",

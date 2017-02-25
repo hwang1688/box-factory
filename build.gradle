@@ -1,19 +1,23 @@
-defaultTasks 'build'
+task buildSandbox(type: Exec) {
+    description "Build the sandbox vmware-iso server"
 
-task build(type: Exec) {
-    description "Build the sandbox-server vmware-iso"
+    commandLine "packer", "build", "-force", "-var-file=variables-sandbox.json", "template-debian.json"
+}
 
-    commandLine "packer", "build", "-force", "sandbox-server.json"
+task buildJenkins(type: Exec) {
+    description "Build the jenkins vmware-iso server"
+
+    commandLine "packer", "build", "-force", "-var-file=variables-jenkins.json", "template-debian.json"
 }
 
 task clean(type: Delete) {
-    description "Delete the output directory output-vmware-iso"
+    description "Delete the build directory"
 
-    delete "output-vmware-iso"
+    delete "build"
 }
 
 task cleanAll(type: Delete) {
-    description "Delete the output-vmware-iso and packer_cache directories"
+    description "Delete the build and packer_cache directories"
 
     dependsOn clean
     delete "packer_cache"
