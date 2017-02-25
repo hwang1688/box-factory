@@ -1,5 +1,9 @@
+# Directories
 .gradle/
+
 output-vmware-iso/
 packer_cache/
 
+# Files
+.DS_Store
 *~
