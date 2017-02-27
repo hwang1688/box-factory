@@ -62,14 +62,29 @@
       "override": {
         "vmware-iso": {
           "scripts": [
-            "scripts/base.sh",
-            "scripts/vmtools.sh",
-            "scripts/vagrant.sh",
+            "scripts/base.sh"
+          ]
+        }
+      }
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/playbook-sandbox.yml",
+      "role_paths": [
+        "ansible/roles/common"
+      ]
+    },
+    {
+      "type": "shell",
+      "execute_command": "echo '{{user `ssh_password`}}' | sudo -S sh '{{.Path}}'",
+      "override": {
+        "vmware-iso": {
+          "scripts": [
             "scripts/postgres.sh",
             "scripts/oraclejdk.sh",
             "scripts/apache.sh",
             "scripts/tomcat.sh",
-	    "scripts/iptables.sh",
+            "scripts/iptables.sh",
             "scripts/cleanup.sh"
           ]
         }

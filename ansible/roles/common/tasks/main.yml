@@ -1,0 +1,16 @@
+---
+- name: install curl
+  apt: name=curl state=latest
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+- name: install tree
+  apt: name=tree state=latest
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+- name: install sysstat
+  apt: name=sysstat state=latest
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
