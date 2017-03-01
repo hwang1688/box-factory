@@ -71,7 +71,9 @@
       "type": "ansible-local",
       "playbook_file": "ansible/playbook-sandbox.yml",
       "role_paths": [
-        "ansible/roles/common"
+        "ansible/roles/common",
+        "ansible/roles/postgres",
+        "ansible/roles/oraclejdk"
       ]
     },
     {
@@ -80,8 +82,6 @@
       "override": {
         "vmware-iso": {
           "scripts": [
-            "scripts/postgres.sh",
-            "scripts/oraclejdk.sh",
             "scripts/apache.sh",
             "scripts/tomcat.sh",
             "scripts/iptables.sh",
