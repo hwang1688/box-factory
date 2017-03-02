@@ -73,7 +73,8 @@
       "role_paths": [
         "ansible/roles/common",
         "ansible/roles/postgres",
-        "ansible/roles/oraclejdk"
+        "ansible/roles/oraclejdk",
+        "ansible/roles/apache"
       ]
     },
     {
@@ -82,7 +83,6 @@
       "override": {
         "vmware-iso": {
           "scripts": [
-            "scripts/apache.sh",
             "scripts/tomcat.sh",
             "scripts/iptables.sh",
             "scripts/cleanup.sh"
