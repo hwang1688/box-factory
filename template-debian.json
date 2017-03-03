@@ -72,9 +72,11 @@
       "playbook_file": "ansible/playbook-sandbox.yml",
       "role_paths": [
         "ansible/roles/common",
+	"ansible/roles/iptables",
         "ansible/roles/postgres",
         "ansible/roles/oraclejdk",
-        "ansible/roles/apache"
+        "ansible/roles/apache",
+	"ansible/roles/tomcat"
       ]
     },
     {
@@ -83,8 +85,6 @@
       "override": {
         "vmware-iso": {
           "scripts": [
-            "scripts/tomcat.sh",
-            "scripts/iptables.sh",
             "scripts/cleanup.sh"
           ]
         }

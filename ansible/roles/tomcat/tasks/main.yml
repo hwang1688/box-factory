@@ -1,0 +1,83 @@
+---
+- name: create tomcat group
+  group:
+    name: tomcat
+    system: yes
+    state: present
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: create tomcat user
+  user:
+    name: tomcat
+    system: yes
+    shell: /bin/bash
+    state: present
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: download tomcat archive
+  get_url:
+    url: http://www.trieuvan.com/apache/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz
+    dest: /home/tomcat/apache-tomcat-8.5.11.tar.gz
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: extract tomcat archive
+  unarchive:
+    src: /home/tomcat/apache-tomcat-8.5.11.tar.gz
+    dest: /opt
+    remote_src: yes
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: change ownership for extracted tomcat
+  file:
+    path: /opt/apache-tomcat-8.5.11
+    owner: tomcat
+    group: tomcat
+    recurse: yes
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: create tomcat symlink
+  file:
+    src: /opt/apache-tomcat-8.5.11
+    dest: /opt/tomcat
+    state: link
+    owner: tomcat
+    group: tomcat
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: change mode for webapps directory
+  file:
+    path: /opt/tomcat/webapps
+    mode: 0755
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: create tomcat service file
+  copy:
+    src: tomcat.service
+    dest: /etc/systemd/system/tomcat.service
+    mode: 0644
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
+
+- name: enable tomcat to start on boot
+  shell: |
+    systemctl daemon-reload
+    systemctl restart tomcat
+    systemctl enable tomcat
+  sudo: yes
+  remote_user: sbadmin
+  sudo_pass: "56@dmin!"
