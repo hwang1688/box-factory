@@ -1,5 +1,6 @@
 {
   "vm_name": "jenkins",
   "memory": "1024",
-  "disk_size": "5120"
+  "disk_size": "5120",
+  "playbook_file": "ansible/playbook-jenkins.yml"
 }

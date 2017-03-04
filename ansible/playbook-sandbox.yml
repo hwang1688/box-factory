@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: yes
+  remote_user: "{{ ssh_username }}"
+  roles:
+  - common
+  - iptables
+  - postgres
+  - oraclejdk
+  - apache
+  - tomcat

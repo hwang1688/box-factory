@@ -1,0 +1,35 @@
+---
+- name: configure sshd to prevent dns resolution
+  shell: printf "\n#Prevent DNS resolution to speed up logins\nUseDNS no\n" >> /etc/ssh/sshd_config
+  sudo: yes
+  sudo_pass: "{{ ssh_password }}"
+
+- name: remove 5s grub timeout
+  shell: |
+    cp -f /etc/default/grub /etc/default/grub.old
+    sed -e "s/^GRUB_TIMEOUT\=[0-9]*$/GRUB_TIMEOUT\=0/" /etc/default/grub.old > /etc/default/grub
+    update-grub
+    rm -f /etc/default/grub.old
+  sudo: yes
+  sudo_pass: "{{ ssh_password }}"
+
+- name: install curl
+  apt: 
+    name: curl 
+    state: latest
+  sudo: yes
+  sudo_pass: "{{ ssh_password }}"
+
+- name: install tree
+  apt: 
+    name: tree 
+    state: latest
+  sudo: yes
+  sudo_pass: "{{ ssh_password }}"
+
+- name: install sysstat
+  apt: 
+    name: sysstat 
+    state: latest
+  sudo: yes
+  sudo_pass: "{{ ssh_password }}"
