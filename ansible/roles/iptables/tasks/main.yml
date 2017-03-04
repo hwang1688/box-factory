@@ -5,8 +5,7 @@
     dest: /etc/iptables.up.rules
     mode: 0644
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: make iptables rules are applied on boot
   copy:
@@ -14,6 +13,4 @@
     dest: /etc/network/if-pre-up.d/iptables
     mode: 0744
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
-
+  sudo_pass: "{{ ssh_password }}"

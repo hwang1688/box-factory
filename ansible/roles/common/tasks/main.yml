@@ -2,8 +2,7 @@
 - name: configure sshd to prevent dns resolution
   shell: printf "\n#Prevent DNS resolution to speed up logins\nUseDNS no\n" >> /etc/ssh/sshd_config
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: remove 5s grub timeout
   shell: |
@@ -12,29 +11,25 @@
     update-grub
     rm -f /etc/default/grub.old
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: install curl
   apt: 
     name: curl 
     state: latest
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: install tree
   apt: 
     name: tree 
     state: latest
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: install sysstat
   apt: 
     name: sysstat 
     state: latest
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"

@@ -5,8 +5,7 @@
     dest: /etc/apt/sources.list.d/java-8-debian.list 
     mode: 0644
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: add java 8 apt key
   apt_key:
@@ -14,20 +13,17 @@
     keyserver: keyserver.ubuntu.com
     state: present
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: accept oracle license
   shell: "echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections"
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: accept oracle license
   shell: "echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections"
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: install oracle-java8-installer
   apt: 
@@ -35,13 +31,11 @@
     state: latest
     update_cache: yes
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: install oracle-java8-set-default
   apt:
     name: oracle-java8-set-default
     state: latest
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"

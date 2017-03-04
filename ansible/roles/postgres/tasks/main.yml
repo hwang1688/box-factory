@@ -4,13 +4,11 @@
     name: postgresql 
     state: latest
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"
 
 - name: install postgresql-client
   apt: 
     name: postgresql-client 
     state: latest
   sudo: yes
-  remote_user: sbadmin
-  sudo_pass: "56@dmin!"
+  sudo_pass: "{{ ssh_password }}"

@@ -70,6 +70,10 @@
     {
       "type": "ansible-local",
       "playbook_file": "ansible/playbook-sandbox.yml",
+      "extra_arguments": [
+        "-vvvv",
+	"--extra-vars \"ssh_username=sbadmin ssh_password='{{user `ssh_password`}}'\""
+      ],
       "role_paths": [
         "ansible/roles/common",
 	"ansible/roles/iptables",
