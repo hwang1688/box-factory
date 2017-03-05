@@ -76,11 +76,12 @@
 	"--extra-vars \"ssh_username={{user `ssh_username`}} ssh_password='{{user `ssh_password`}}'\""
       ],
       "role_paths": [
+        "ansible/roles/apache",
         "ansible/roles/common",
 	"ansible/roles/iptables",
-        "ansible/roles/postgres",
+        "ansible/roles/jenkins",
         "ansible/roles/oraclejdk",
-        "ansible/roles/apache",
+        "ansible/roles/postgres",
 	"ansible/roles/tomcat"
       ]
     },
