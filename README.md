@@ -62,4 +62,8 @@ A VMware VM named `jenkins` in the `build/jenkins` directory with these on it:
   + ansible
 * Oracle JDK 1.8.0_121-b13
 * Apache2 2.4.10-10+deb8u7
+* Jenkins 2.32.3
+* Build tools for Jenkins:
+  + git
+  + docker
 * Open ports with iptables: 22, 80, 443

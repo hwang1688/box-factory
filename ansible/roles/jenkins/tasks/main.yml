@@ -22,6 +22,21 @@
   sudo: yes
   sudo_pass: "{{ ssh_password }}"
 
+- name: make sure docker is present
+  apt:
+    name: docker-ce
+    state: present
+  sudo: yes
+  sudo_pass: "{{ ssh_password }}"
+
+- name: add jenkins user to docker group
+  user:
+    name: jenkins
+    groups: docker
+    append: yes
+  sudo: yes
+  sudo_pass: "{{ ssh_password }}"
+
 - name: install apache2
   apt:
     name: apache2
