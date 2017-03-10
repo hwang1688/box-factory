@@ -1,7 +1,7 @@
 {
     "core": "1",
-    "vm_name": "sandbox",
+    "vm_name": "jalpt",
     "memory": "2048",
     "disk_size": "5120",
-    "playbook_file": "ansible/playbook-sandbox.yml"
+    "playbook_file": "ansible/playbook-jalpt.yml"
 }

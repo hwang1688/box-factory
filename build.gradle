@@ -5,7 +5,7 @@ task buildBareBox(type: Exec) {
 }
 
 task buildJalptBox(type: Exec) {
-    description "Build the Jalpt box vmware-iso server"
+    description "Build the JALPT box vmware-iso server"
 
     commandLine "packer", "build", "-force", "-var-file=variables-jalpt.json", "template-debian.json"
 }
