@@ -1,8 +1,4 @@
-task buildAll {
-    description "Build all the boxes"
-    
-    dependsOn buildBareBox, buildJalptBox, buildJenkinsBox
-}
+task buildAll(dependsOn: [ 'buildBareBox', 'buildJalptBox', 'buildJenkinsBox' ])
 
 task buildBareBox(type: Exec) {
     description "Build the bare box vmware-iso server"
