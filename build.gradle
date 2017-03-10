@@ -1,11 +1,19 @@
-task buildSandbox(type: Exec) {
-    description "Build the sandbox vmware-iso server"
+task buildAll(dependsOn: [ 'buildBareBox', 'buildJalptBox', 'buildJenkinsBox' ])
 
-    commandLine "packer", "build", "-force", "-var-file=variables-sandbox.json", "template-debian.json"
+task buildBareBox(type: Exec) {
+    description "Build the bare box vmware-iso server"
+
+    commandLine "packer", "build", "-force", "-var-file=variables-bare.json", "template-debian.json"
 }
 
-task buildJenkins(type: Exec) {
-    description "Build the jenkins vmware-iso server"
+task buildJalptBox(type: Exec) {
+    description "Build the JALPT box vmware-iso server"
+
+    commandLine "packer", "build", "-force", "-var-file=variables-jalpt.json", "template-debian.json"
+}
+
+task buildJenkinsBox(type: Exec) {
+    description "Build the Jenkins vmware-iso server"
 
     commandLine "packer", "build", "-force", "-var-file=variables-jenkins.json", "template-debian.json"
 }

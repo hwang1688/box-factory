@@ -4,8 +4,3 @@
   remote_user: "{{ ssh_username }}"
   roles:
   - common
-  - iptables
-  - oraclejdk
-  - apache
-  - jenkinstools
-  - jenkins
