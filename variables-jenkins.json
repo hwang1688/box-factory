@@ -1,6 +1,7 @@
 {
-  "vm_name": "jenkins",
-  "memory": "2048",
-  "disk_size": "10240",
-  "playbook_file": "ansible/playbook-jenkins.yml"
+    "core": "1",
+    "vm_name": "jenkins",
+    "memory": "2048",
+    "disk_size": "10240",
+    "playbook_file": "ansible/playbook-jenkins.yml"
 }
