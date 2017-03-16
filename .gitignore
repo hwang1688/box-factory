@@ -1,9 +1,11 @@
 # Directories
 .gradle/
+.settings/
 
 build/
 packer_cache/
 
 # Files
 .DS_Store
+.project
 *~
