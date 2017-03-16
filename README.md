@@ -1,4 +1,4 @@
-# Sandbox Server Project
+# Box Factory Project
 
 ## Introduction
 This project is to demonstrate how to use Packer and Ansible to automate the build of VMware VMs with
