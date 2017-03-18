@@ -7,9 +7,9 @@ used to build and provision the VMs.
 
 ## Tools & Ingredients
 * A Mac with OS X El Capitan 10.11.6
-* VMware Fusion Professional Version 8.5.3
-* Gradle 3.4 installed with `brew install gradle`
-* Packer 0.12.2 installed with `brew install packer`
+* VMware Fusion Professional Version 8.5.5
+* Gradle 3.4.1 installed with `brew install gradle`
+* Packer 0.12.3 installed with `brew install packer`
 
 ## Instructions
 Build Bare Box

@@ -71,9 +71,11 @@
         {
             "type": "ansible-local",
             "playbook_file": "{{user `playbook_file`}}",
+            "command": "echo '{{user `ssh_password`}}' | ansible-playbook",
             "extra_arguments": [
                 "-vvvv",
-	        "--extra-vars \"ssh_username={{user `ssh_username`}} ssh_password='{{user `ssh_password`}}'\""
+                "-b",
+                "-K"
             ],
             "role_paths": [
                 "ansible/roles/apache",
