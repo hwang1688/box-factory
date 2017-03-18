@@ -3,12 +3,8 @@
   apt: 
     name: postgresql 
     state: latest
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: install postgresql-client
   apt: 
     name: postgresql-client 
     state: latest
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"

@@ -4,38 +4,26 @@
     src: java-8-debian.list 
     dest: /etc/apt/sources.list.d/java-8-debian.list 
     mode: 0644
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: add java 8 apt key
   apt_key:
     id: EEA14886
     keyserver: keyserver.ubuntu.com
     state: present
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: accept oracle license
   shell: "echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections"
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: accept oracle license
   shell: "echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections"
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: install oracle-java8-installer
   apt: 
     name: oracle-java8-installer
     state: latest
     update_cache: yes
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: install oracle-java8-set-default
   apt:
     name: oracle-java8-set-default
     state: latest
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"

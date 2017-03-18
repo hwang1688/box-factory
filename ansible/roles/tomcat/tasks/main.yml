@@ -4,8 +4,6 @@
     name: tomcat
     system: yes
     state: present
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: create tomcat user
   user:
@@ -13,62 +11,46 @@
     system: yes
     shell: /bin/bash
     state: present
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: download tomcat archive
   get_url:
-    url: http://www.trieuvan.com/apache/tomcat/tomcat-8/v8.5.11/bin/apache-tomcat-8.5.11.tar.gz
-    dest: /home/tomcat/apache-tomcat-8.5.11.tar.gz
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
+    url: http://www.trieuvan.com/apache/tomcat/tomcat-8/v8.5.12/bin/apache-tomcat-8.5.12.tar.gz
+    dest: /home/tomcat/apache-tomcat-8.5.12.tar.gz
 
 - name: extract tomcat archive
   unarchive:
-    src: /home/tomcat/apache-tomcat-8.5.11.tar.gz
+    src: /home/tomcat/apache-tomcat-8.5.12.tar.gz
     dest: /opt
     remote_src: yes
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: change ownership for extracted tomcat
   file:
-    path: /opt/apache-tomcat-8.5.11
+    path: /opt/apache-tomcat-8.5.12
     owner: tomcat
     group: tomcat
     recurse: yes
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: create tomcat symlink
   file:
-    src: /opt/apache-tomcat-8.5.11
+    src: /opt/apache-tomcat-8.5.12
     dest: /opt/tomcat
     state: link
     owner: tomcat
     group: tomcat
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: change mode for webapps directory
   file:
     path: /opt/tomcat/webapps
     mode: 0755
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: create tomcat service file
   copy:
     src: tomcat.service
     dest: /etc/systemd/system/tomcat.service
     mode: 0644
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
 
 - name: enable tomcat to start on boot
   shell: |
     systemctl daemon-reload
     systemctl restart tomcat
     systemctl enable tomcat
-  sudo: yes
-  sudo_pass: "{{ ssh_password }}"
