@@ -1,9 +1,19 @@
-task buildAll(dependsOn: [ 'buildBareBox', 'buildJalptBox', 'buildJenkinsBox' ])
+task buildAll(dependsOn: [
+    'buildBareBox',
+    'buildJalpBox',
+    'buildJalptBox',
+    'buildJenkinsBox' ])
 
 task buildBareBox(type: Exec) {
     description "Build the bare box vmware-iso server"
 
     commandLine "packer", "build", "-force", "-var-file=variables-bare.json", "template-debian.json"
+}
+
+task buildJalpBox(type: Exec) {
+    description "Build the JALP box vmware-iso server"
+
+    commandLine "packer", "build", "-force", "-var-file=variables-jalp.json", "template-debian.json"
 }
 
 task buildJalptBox(type: Exec) {

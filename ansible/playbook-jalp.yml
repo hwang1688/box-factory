@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+
+  gather_facts: yes
+  
+  roles:
+  - common
+  - iptables
+  - postgres
+  - oraclejdk
+  - apache
