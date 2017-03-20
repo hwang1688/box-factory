@@ -15,6 +15,13 @@
 - name: upgrade grub
   shell: update-grub
 
+- name: add /sbin to sbadmin path
+  blockinfile:
+    name: /home/sbadmin/.profile
+    block: |
+      # Add /sbin to PATH for admin user
+      PATH="/sbin:$PATH"
+
 - name: install curl
   apt: 
     name: curl 
