@@ -17,13 +17,13 @@
 - name: disable apache2 default site
   shell: /usr/sbin/a2dissite 000-default
 
-- name: create the jenkins apache config
+- name: create the http app 8080 apache config
   copy:
-    src: jenkins.conf
-    dest: /etc/apache2/sites-available/jenkins.conf
+    src: 100-http_app_8080.conf
+    dest: /etc/apache2/sites-available/100-http_app_8080.conf
 
-- name: enable jenkins site
-  shell: /usr/sbin/a2ensite jenkins
+- name: enable the http app 8080 site
+  shell: /usr/sbin/a2ensite 100-http_app_8080
 
 - name: restart apache2
   service:
