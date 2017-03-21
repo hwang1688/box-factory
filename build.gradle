@@ -7,25 +7,25 @@ task buildAll(dependsOn: [
 task buildBareBox(type: Exec) {
     description "Build the bare box vmware-iso server"
 
-    commandLine "packer", "build", "-force", "-var-file=variables-bare.json", "template-debian.json"
+    commandLine "packer", "build", "-force", "-var-file=varfiles/bare.json", "templates/debian.json"
 }
 
 task buildJalpBox(type: Exec) {
     description "Build the JALP box vmware-iso server"
 
-    commandLine "packer", "build", "-force", "-var-file=variables-jalp.json", "template-debian.json"
+    commandLine "packer", "build", "-force", "-var-file=varfiles/jalp.json", "templates/debian.json"
 }
 
 task buildJalptBox(type: Exec) {
     description "Build the JALPT box vmware-iso server"
 
-    commandLine "packer", "build", "-force", "-var-file=variables-jalpt.json", "template-debian.json"
+    commandLine "packer", "build", "-force", "-var-file=varfiles/jalpt.json", "templates/debian.json"
 }
 
 task buildJenkinsBox(type: Exec) {
     description "Build the Jenkins vmware-iso server"
 
-    commandLine "packer", "build", "-force", "-var-file=variables-jenkins.json", "template-debian.json"
+    commandLine "packer", "build", "-force", "-var-file=varfiles/jenkins.json", "templates/debian.json"
 }
 
 task clean(type: Delete) {
