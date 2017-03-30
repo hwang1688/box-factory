@@ -50,7 +50,8 @@
     mode: 0644
 
 - name: enable tomcat to start on boot
-  shell: |
-    systemctl daemon-reload
-    systemctl restart tomcat
-    systemctl enable tomcat
+  systemd:
+    name: tomcat
+    daemon-reload: yes
+    enabled: yes
+    state: restarted

@@ -7,7 +7,7 @@ used to build and provision the VMs.
 
 ## Tools & Ingredients
 * A Mac with OS X El Capitan 10.11.6
-* VMware Fusion Professional Version 8.5.5
+* VMware Fusion Professional Version 8.5.6
 * Gradle 3.4.1 installed with `brew install gradle`
 * Packer 0.12.3 installed with `brew install packer`
 
@@ -15,6 +15,11 @@ used to build and provision the VMs.
 Build Bare Box
 ```sh
 $ gradle buildBareBox
+```
+
+Build JALP Box
+```sh
+$ gradle buildJalpBox
 ```
 
 Build JALPT Box
@@ -50,6 +55,20 @@ A VMware VM named `bare` in the `build/bare` directory with these:
   + tree
   + sysstat
   + ansible
+
+### JALP (Java Apache Linux Postgres) Box ###
+A VMware VM named `jalp` in the `build/jalp` directory with these on it:
+* 1 CPU, 2GB memory, 10GB disk
+* Debian Linux 8.7.1
+* Additional Debian packages:
+  + curl
+  + tree
+  + sysstat
+  + ansible
+* PostgreSQL 9.4.10
+* Oracle JDK 1.8.0_121-b13
+* Apache2 2.4.10-10+deb8u7
+* Open ports with iptables: 22, 80, 443
 
 ### JALPT (Java Apache Linux Postgres Tomcat) Box ###
 A VMware VM named `jalpt` in the `build/jalpt` directory with these on it:
