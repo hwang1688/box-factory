@@ -121,16 +121,19 @@ A VMware VM named `jenkins` in the `build/jenkins` directory with these on it:
 
 # How it works
 
-The VMs are built with Packer using Ansible Local option wrapped within Gradle. When a Gradle VM target is
+The VMs are built with Packer using Ansible Local option wrapped within Gradle. When a Gradle build target is
 invoked, it executes the Packer command line to build the VM and provision the VM using Packer's Ansible Local
 provisioner. Here are the main steps using the Bare Box as an example:
 
-1. Command `gradle buildBareBox` is executed.
-2. Gradle executes `packer build -force -var-file=varfiles/bare.json templates/debian.json` is called.
+1. Command `gradle buildBareBox` is executed. This requires Gradle to be installed on the build machine. Gradle
+   Wrapper could be used so that Gradle can be installed on demand.
+2. Gradle executes command `packer build -force -var-file=varfiles/bare.json templates/debian.json`. This requires
+   Packer to be installed on the build machine.
 3. Packer builds the VM, install the OS, and calls the `base.sh` script to install Ansible on the VM so it can
    be used in the next step.
 4. Packer provisions the VM by using Ansible Local, shipper the Ansible playbook file `playbook-bare.yml` to
    the VM after it is up and running. Packer also uploads all the Ansible role files to the VM as well.
 5. Ansible local runs `ansible-playbook -i localhost playbook-bare.yml` to provision the VM.
 6. When Ansible deployment is completed, Packer calls the `cleanup.sh` script to clean up files left on the VM.
-7. Packer then shuts down the VM and cleans up the VMware leftover files.
+7. Packer then shuts down the VM and cleans up the VMware leftover files, leaving the final VM files in the
+   `build/bare` directory. Packer also comes with the option to zip up the VM files.
