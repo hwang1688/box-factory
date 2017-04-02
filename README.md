@@ -6,10 +6,11 @@ different packages installed in each VM. The build system is using Gradle. Packe
 used to build and provision the VMs.
 
 ## Tools & Ingredients
-* A Mac with OS X El Capitan 10.11.6
-* VMware Fusion Professional Version 8.5.6
-* Gradle 3.4.1 installed with `brew install gradle`
-* Packer 0.12.3 installed with `brew install packer`
+* A Mac with OS X El Capitan 10.11.6 with [Homebrew](https://brew.sh) installed to manage packages.
+* [VMware Fusion](https://my.vmware.com/en/web/vmware/info/slug/desktop_end_user_computing/vmware_fusion/8_0)
+  Professional Version 8.5.6
+* [Gradle](https://gradle.org) 3.4.1 installed with `brew install gradle`
+* [Packer](https://www.packer.io) 0.12.3 installed with `brew install packer`
 
 ## Instructions
 Build Bare Box
@@ -101,3 +102,35 @@ A VMware VM named `jenkins` in the `build/jenkins` directory with these on it:
   + git
   + docker
 * Open ports with iptables: 22, 80, 443
+
+# Where things are
+## Source Directories
+* `ansible` directory contains the Ansible playbooks and the files for all the roles used by Ansible Local
+  to install needed files on the VMs. The playbooks are used by Packer's Ansible Local provisioner.
+* `http` directory contains the configuration file used by Packer to initially setup the Debian Linux OS
+  on the VM.
+* `scripts` directory contains the shell scripts used by Packer's Shell provisioner.
+* `templates` directory contains the Packer build template files for the OS. Current, only Debian Linux is provided.
+* `varfiles` directory contains the override variables for Packer's template files for different VMs.
+
+## Other Intermediate Directories
+* `build` directory contains the uncompressed VM directories for the build, each VM has its own directory.
+  This directory is specified in the Packer's template file.
+* `packer_cache` directory holds the cached copy of the OS installation files so Packer doesn't need to download
+  from the source every time.
+
+# How it works
+
+The VMs are built with Packer using Ansible Local option wrapped within Gradle. When a Gradle VM target is
+invoked, it executes the Packer command line to build the VM and provision the VM using Packer's Ansible Local
+provisioner. Here are the main steps using the Bare Box as an example:
+
+1. Command `gradle buildBareBox` is executed.
+2. Gradle executes `packer build -force -var-file=varfiles/bare.json templates/debian.json` is called.
+3. Packer builds the VM, install the OS, and calls the `base.sh` script to install Ansible on the VM so it can
+   be used in the next step.
+4. Packer provisions the VM by using Ansible Local, shipper the Ansible playbook file `playbook-bare.yml` to
+   the VM after it is up and running. Packer also uploads all the Ansible role files to the VM as well.
+5. Ansible local runs `ansible-playbook -i localhost playbook-bare.yml` to provision the VM.
+6. When Ansible deployment is completed, Packer calls the `cleanup.sh` script to clean up files left on the VM.
+7. Packer then shuts down the VM and cleans up the VMware leftover files.
