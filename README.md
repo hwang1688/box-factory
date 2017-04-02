@@ -103,8 +103,8 @@ A VMware VM named `jenkins` in the `build/jenkins` directory with these on it:
   + docker
 * Open ports with iptables: 22, 80, 443
 
-# Where things are
-## Source Directories
+## Where things are
+### Source Directories
 * `ansible` directory contains the Ansible playbooks and the files for all the roles used by Ansible Local
   to install needed files on the VMs. The playbooks are used by Packer's Ansible Local provisioner.
 * `http` directory contains the configuration file used by Packer to initially setup the Debian Linux OS
@@ -113,14 +113,13 @@ A VMware VM named `jenkins` in the `build/jenkins` directory with these on it:
 * `templates` directory contains the Packer build template files for the OS. Current, only Debian Linux is provided.
 * `varfiles` directory contains the override variables for Packer's template files for different VMs.
 
-## Other Intermediate Directories
+### Other Intermediate Directories
 * `build` directory contains the uncompressed VM directories for the build, each VM has its own directory.
   This directory is specified in the Packer's template file.
 * `packer_cache` directory holds the cached copy of the OS installation files so Packer doesn't need to download
   from the source every time.
 
-# How it works
-
+## How it works
 The VMs are built with Packer using Ansible Local option wrapped within Gradle. When a Gradle build target is
 invoked, it executes the Packer command line to build the VM and provision the VM using Packer's Ansible Local
 provisioner. Here are the main steps using the Bare Box as an example:
